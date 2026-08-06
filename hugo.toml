@@ -1,3 +1,11 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://toryleone.com/'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'Tory Leone'
+theme = 'mytheme'
+
+[taxonomies]
+  medium = 'mediums'
+  tag = 'tags'
+
+[params]
+  description = 'Original artwork by Tory Leone.'

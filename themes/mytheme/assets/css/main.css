@@ -1,0 +1,21 @@
+/* ==========================================================================
+   main.css — NOT loaded directly. This file documents bundle order only.
+   The actual bundling happens in themes/mytheme/layouts/_default/baseof.html
+   via resources.Concat, scoped per-layout (gallery pages pull in the
+   gallery-only component files below; other layouts don't).
+
+   Order matters: base tokens first, then components.
+   ========================================================================== */
+
+@import "base/_reset.css";
+@import "base/_variables.css";
+@import "base/_typography.css";
+
+@import "components/_header.css";
+@import "components/_footer.css";
+
+/* gallery-layout only, see baseof.html's $cssFiles */
+@import "components/_filter-bar.css";
+@import "components/_gallery-featured.css";
+@import "components/_gallery-feed.css";
+@import "components/_artwork.css";

@@ -1,0 +1,31 @@
+{{/*
+  Featured gallery — pieces with `featured: true` in front matter.
+  Each item gets a data-size ("large", "tall", "wide", "normal") based on
+  the `orientation` front matter field so pieces form the shape best
+  suited to their image rather than being forced square.
+*/}}
+{{ $featured := where site.RegularPages.ByDate.Reverse "Section" "gallery" }}
+{{ $featured = where $featured "Params.featured" true }}
+
+{{ if $featured }}
+<section class="gallery-featured" id="featured">
+  <div class="gallery-featured__heading">
+    <p class="eyebrow">Featured</p>
+    <h2>Selected Work</h2>
+  </div>
+
+  <div class="gallery-featured__grid">
+    {{ range $i, $page := $featured }}
+    {{ $size := "normal" }}
+    {{ if eq (int (mod $i 5)) 0 }}{{ $size = "large" }}
+    {{ else if eq $page.Params.orientation "portrait" }}{{ $size = "tall" }}
+    {{ else if eq $page.Params.orientation "landscape" }}{{ $size = "wide" }}
+    {{ end }}
+    <a class="gallery-featured__item" data-size="{{ $size }}" href="{{ $page.RelPermalink }}">
+      <img src="{{ $page.Params.image }}" alt="{{ $page.Title }}" loading="lazy">
+      <span class="gallery-featured__caption">{{ $page.Title }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

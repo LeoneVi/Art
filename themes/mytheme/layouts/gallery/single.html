@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article class="artwork">
+  <div class="artwork__image">
+    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+  </div>
+  <div class="artwork__details">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.medium }}<p class="eyebrow">{{ . }}</p>{{ end }}
+    {{ with .Params.tags }}
+    <ul class="artwork__tags">
+      {{ range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{ end }}
+    {{ with .Content }}<div class="artwork__notes">{{ . }}</div>{{ end }}
+    <a href="{{ "/gallery/" | relURL }}">&larr; Back to Gallery</a>
+  </div>
+</article>
+{{ end }}

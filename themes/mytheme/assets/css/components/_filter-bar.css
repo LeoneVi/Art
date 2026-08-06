@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Filter bar — search input + medium/tag toggle buttons
+   ========================================================================== */
+
+.filter-bar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-border);
+  padding-bottom: var(--spacing-lg);
+}
+
+.filter-bar__search {
+  flex: 1 1 220px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+}
+
+.filter-bar__search:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.filter-bar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.filter-bar__button {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.filter-bar__button:hover {
+  color: var(--color-text);
+}
+
+.filter-bar__button.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}

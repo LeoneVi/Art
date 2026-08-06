@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Single artwork page — used by themes/mytheme/layouts/gallery/single.html
+   ========================================================================== */
+
+.artwork {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.artwork__image {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+}
+
+.artwork__image img {
+  width: 100%;
+  height: auto;
+}
+
+.artwork__details h1 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.artwork__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin: var(--spacing-md) 0;
+}
+
+.artwork__tags li {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.artwork__notes {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+}
+
+.artwork__details > a {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 800px) {
+  .artwork {
+    grid-template-columns: 1fr;
+  }
+}
