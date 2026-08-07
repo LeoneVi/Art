@@ -20,5 +20,5 @@ images:
   - "/img/gallery/dogebux/Purple2.png"
 orientation: "landscape"
 featured: false
-date: 2026-08-07
+date: 2023
 ---
