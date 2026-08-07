@@ -20,7 +20,7 @@
        href="{{ .RelPermalink }}"
        data-title="{{ .Title | lower }}"
        data-medium="{{ .Params.medium | lower }}"
-       data-tags="{{ delimit .Params.tags "," | lower }}">
+       data-tags="{{ delimit (.Params.tags | default (slice)) "," | lower }}">
       <img src="{{ $cover }}" alt="{{ .Title }}" loading="lazy">
     </a>
     {{ end }}
