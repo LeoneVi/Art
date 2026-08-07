@@ -1,7 +1,3 @@
 {{ define "main" }}
-<section class="home-intro">
-  <h1>{{ site.Title }}</h1>
-  {{ with site.Params.description }}<p class="eyebrow">{{ . }}</p>{{ end }}
-  <a href="{{ "/gallery/" | relURL }}">View the Gallery &rarr;</a>
-</section>
+  {{ partial "gallery/feed.html" . }}
 {{ end }}

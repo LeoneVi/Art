@@ -1,17 +1,23 @@
 {{ define "main" }}
+{{ $images := .Params.images }}
+{{ if not $images }}{{ $images = slice .Params.image }}{{ end }}
 <article class="artwork">
-  <div class="artwork__image">
-    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+  <div class="artwork__viewer" data-gallery>
+    {{ range $i, $src := $images }}
+    <img class="artwork__slide{{ if eq $i 0 }} is-active{{ end }}" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+    {{ end }}
+    {{ if gt (len $images) 1 }}
+    <button class="artwork__arrow artwork__arrow--prev" type="button" data-gallery-prev aria-label="Previous image">&larr;</button>
+    <button class="artwork__arrow artwork__arrow--next" type="button" data-gallery-next aria-label="Next image">&rarr;</button>
+    {{ end }}
   </div>
   <div class="artwork__details">
     <h1>{{ .Title }}</h1>
-    {{ with .Params.medium }}<p class="eyebrow">{{ . }}</p>{{ end }}
-    {{ with .Params.tags }}
-    <ul class="artwork__tags">
-      {{ range . }}<li>{{ . }}</li>{{ end }}
-    </ul>
-    {{ end }}
-    {{ with .Content }}<div class="artwork__notes">{{ . }}</div>{{ end }}
+    <div class="artwork__meta">
+      {{ with .Date }}<p><strong>Date:</strong> {{ . | time.Format ":date_long" }}</p>{{ end }}
+      {{ with .Params.medium }}<p><strong>Medium:</strong> {{ . }}</p>{{ end }}
+    </div>
+    {{ with .Content }}<div class="artwork__notes"><strong>Description:</strong> {{ . }}</div>{{ end }}
     <a href="{{ "/gallery/" | relURL }}">&larr; Back to Gallery</a>
   </div>
 </article>

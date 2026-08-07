@@ -1,0 +1,4 @@
+---
+title: "Featured"
+layout: "gallery"
+---

@@ -1,7 +1,5 @@
 /* ==========================================================================
-   Instagram-style feed — every piece, all mediums.
-   CSS columns give a masonry layout with zero JS: each image keeps its
-   natural aspect ratio instead of being cropped into a square.
+   Gallery feed — every piece, image-only square tiles.
    ========================================================================== */
 
 .gallery-feed {
@@ -15,13 +13,13 @@
 }
 
 .gallery-feed__grid {
-  column-count: 4;
-  column-gap: var(--gallery-gap);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--gallery-gap);
 }
 
 .gallery-feed__item {
-  break-inside: avoid;
-  margin-bottom: var(--gallery-gap);
+  aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-sm);
@@ -30,7 +28,8 @@
 
 .gallery-feed__item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.25s ease;
 }
@@ -39,30 +38,18 @@
   transform: scale(1.02);
 }
 
-.gallery-feed__meta {
-  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
-  font-family: var(--font-ui);
-}
-
-.gallery-feed__title {
-  font-size: var(--font-size-sm);
-  color: var(--color-text);
-}
-
-.gallery-feed__medium {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  text-transform: capitalize;
-}
-
 .gallery-feed__item--hidden {
   display: none;
 }
 
 @media (max-width: 900px) {
-  .gallery-feed__grid { column-count: 3; }
+  .gallery-feed__grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 
 @media (max-width: 600px) {
-  .gallery-feed__grid { column-count: 2; }
+  .gallery-feed__grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }
