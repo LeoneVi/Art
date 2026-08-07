@@ -5,5 +5,5 @@ image:
   - "/img/gallery/painting-of-a-dog/2.jpeg"
 orientation: "portrait"
 featured: false
-date: 2026-08-06
+date: 2026-09-06
 ---
