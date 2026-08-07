@@ -17,7 +17,7 @@
       {{ with .Date }}<p><strong>Date:</strong> {{ . | time.Format ":date_long" }}</p>{{ end }}
       {{ with .Params.medium }}<p><strong>Medium:</strong> {{ . }}</p>{{ end }}
     </div>
-    {{ with .Content }}<div class="artwork__notes"><strong>Description:</strong> {{ . }}</div>{{ end }}
+    {{ with .Content }}<div class="artwork__notes">{{ . }}</div>{{ end }}
     <a href="{{ "/gallery/" | relURL }}">&larr; Back to Gallery</a>
   </div>
 </article>
