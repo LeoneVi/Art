@@ -7,24 +7,21 @@
 
 <section class="gallery-feed" id="feed">
   <div class="gallery-feed__heading">
-    <p class="eyebrow">All Work</p>
-    <h2>Gallery Feed</h2>
+    <h2>Gallery</h2>
   </div>
-
-  {{ partial "gallery/filter-bar.html" . }}
 
   <div class="gallery-feed__grid" id="gallery-feed-grid">
     {{ range $pieces }}
+    {{ $cover := .Params.image }}
+    {{ with .Params.images }}
+      {{ if gt (len .) 0 }}{{ $cover = index . 0 }}{{ end }}
+    {{ end }}
     <a class="gallery-feed__item"
        href="{{ .RelPermalink }}"
        data-title="{{ .Title | lower }}"
        data-medium="{{ .Params.medium | lower }}"
        data-tags="{{ delimit .Params.tags "," | lower }}">
-      <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
-      <div class="gallery-feed__meta">
-        <p class="gallery-feed__title">{{ .Title }}</p>
-        <p class="gallery-feed__medium">{{ .Params.medium }}</p>
-      </div>
+      <img src="{{ $cover }}" alt="{{ .Title }}" loading="lazy">
     </a>
     {{ end }}
   </div>

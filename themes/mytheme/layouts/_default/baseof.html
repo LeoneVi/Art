@@ -13,6 +13,8 @@
     Cache key is scoped per-layout so gallery pages don't pull in CSS
     that other layouts don't need.
   */}}
+  {{ $isGalleryView := or (eq .Layout "gallery") (eq .Section "gallery") (eq .Section "featured") }}
+
   {{ $cssFiles := slice
     "css/base/_reset.css"
     "css/base/_variables.css"
@@ -21,7 +23,10 @@
     "css/components/_footer.css"
     "css/components/_home.css"
   }}
-  {{ if eq .Layout "gallery" }}
+  {{ if .IsHome }}
+    {{ $cssFiles = $cssFiles | append "css/components/_gallery-feed.css" }}
+  {{ end }}
+  {{ if $isGalleryView }}
     {{ $cssFiles = $cssFiles | append (slice
       "css/components/_filter-bar.css"
       "css/components/_gallery-featured.css"
@@ -47,9 +52,13 @@
 
   {{ partial "footer.html" . }}
 
-  {{ if eq .Layout "gallery" }}
+  {{ if $isGalleryView }}
     {{ $filterJS := resources.Get "js/gallery-filter.js" | resources.Minify | resources.Fingerprint }}
     <script src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" defer></script>
+    {{ if and .IsPage (eq .Section "gallery") }}
+      {{ $carouselJS := resources.Get "js/artwork-carousel.js" | resources.Minify | resources.Fingerprint }}
+      <script src="{{ $carouselJS.RelPermalink }}" integrity="{{ $carouselJS.Data.Integrity }}" defer></script>
+    {{ end }}
   {{ end }}
 </body>
 </html>
