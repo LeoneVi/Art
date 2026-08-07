@@ -3,9 +3,6 @@ title: "Annunciation"
 image:
   - "/img/gallery/annunciation/1.jpeg"
   - "/img/gallery/annunciation/2.jpeg"
-images:
-  - "/img/gallery/annunciation/1.jpeg"
-  - "/img/gallery/annunciation/2.jpeg"
 orientation: "portrait"
 featured: false
 date: 2026-01-17

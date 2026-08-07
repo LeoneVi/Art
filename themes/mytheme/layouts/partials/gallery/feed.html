@@ -13,6 +13,9 @@
   <div class="gallery-feed__grid" id="gallery-feed-grid">
     {{ range $pieces }}
     {{ $cover := .Params.image }}
+    {{ if reflect.IsSlice $cover }}
+      {{ if gt (len $cover) 0 }}{{ $cover = index $cover 0 }}{{ end }}
+    {{ end }}
     {{ with .Params.images }}
       {{ if gt (len .) 0 }}{{ $cover = index . 0 }}{{ end }}
     {{ end }}

@@ -17,12 +17,15 @@
   overflow: hidden;
   border: var(--border-width) solid var(--color-border);
   background: var(--color-bg-muted);
+  max-height: 90vh;
 }
 
 .artwork__slide {
   display: none;
   width: 100%;
   height: auto;
+  max-height: 90vh;
+  object-fit: contain;
 }
 
 .artwork__slide.is-active {

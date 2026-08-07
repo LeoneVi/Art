@@ -210,8 +210,6 @@ def build_markdown(title: str, image_urls: list[str], orientation: str | None, d
     else:
         lines.append("image:")
         lines.extend(yaml_list(image_urls, indent="  "))
-        lines.append("images:")
-        lines.extend(yaml_list(image_urls, indent="  "))
 
     if medium:
         lines.append(f'medium: "{medium.replace("\"", "\\\"")}"')

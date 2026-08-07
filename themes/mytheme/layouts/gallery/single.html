@@ -1,6 +1,14 @@
 {{ define "main" }}
 {{ $images := .Params.images }}
-{{ if not $images }}{{ $images = slice .Params.image }}{{ end }}
+{{ if not $images }}
+  {{ with .Params.image }}
+    {{ if reflect.IsSlice . }}
+      {{ $images = . }}
+    {{ else }}
+      {{ $images = slice . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 <article class="artwork">
   <div class="artwork__viewer" data-gallery>
     {{ range $i, $src := $images }}
@@ -14,7 +22,18 @@
   <div class="artwork__details">
     <h1>{{ .Title }}</h1>
     <div class="artwork__meta">
-      {{ with .Date }}<p><strong>Date:</strong> {{ . | time.Format ":date_long" }}</p>{{ end }}
+      {{ with .Params.date }}
+      {{ $rawDate := trim (printf "%v" .) " " }}
+      <p><strong>Date:</strong>
+        {{ if regexMatch "^[0-9]{4}$" $rawDate }}
+          {{ $rawDate }}
+        {{ else if regexMatch "^[0-9]{4}-[0-9]{2}$" $rawDate }}
+          {{ (time (printf "%s-01" $rawDate)) | time.Format "January 2006" }}
+        {{ else }}
+          {{ . | time.Format ":date_long" }}
+        {{ end }}
+      </p>
+      {{ end }}
       {{ with .Params.medium }}<p><strong>Medium:</strong> {{ . }}</p>{{ end }}
     </div>
     {{ with .Content }}<div class="artwork__notes">{{ . }}</div>{{ end }}
