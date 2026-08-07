@@ -1,23 +1,54 @@
 {{ define "main" }}
-{{ $images := .Params.images }}
-{{ if not $images }}{{ $images = slice .Params.image }}{{ end }}
+{{ $images := .Params.image }}
+
+{{ if not (reflect.IsSlice $images) }}
+{{ $images = slice $images }}
+{{ end }}
+
 <article class="artwork">
   <div class="artwork__viewer" data-gallery>
     {{ range $i, $src := $images }}
-    <img class="artwork__slide{{ if eq $i 0 }} is-active{{ end }}" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+    <img
+            class="artwork__slide{{ if eq $i 0 }} is-active{{ end }}"
+            src="{{ $src }}"
+            alt="{{ $.Title }}"
+    >
     {{ end }}
+
     {{ if gt (len $images) 1 }}
-    <button class="artwork__arrow artwork__arrow--prev" type="button" data-gallery-prev aria-label="Previous image">&larr;</button>
-    <button class="artwork__arrow artwork__arrow--next" type="button" data-gallery-next aria-label="Next image">&rarr;</button>
+    <button
+            class="artwork__arrow artwork__arrow--prev"
+            type="button"
+            data-gallery-prev
+            aria-label="Previous image"
+    >&larr;</button>
+
+    <button
+            class="artwork__arrow artwork__arrow--next"
+            type="button"
+            data-gallery-next
+            aria-label="Next image"
+    >&rarr;</button>
     {{ end }}
   </div>
+
   <div class="artwork__details">
     <h1>{{ .Title }}</h1>
+
     <div class="artwork__meta">
-      {{ with .Date }}<p><strong>Date:</strong> {{ . | time.Format ":date_long" }}</p>{{ end }}
-      {{ with .Params.medium }}<p><strong>Medium:</strong> {{ . }}</p>{{ end }}
+      {{ with .Date }}
+      <p><strong>Date:</strong> {{ . | time.Format ":date_long" }}</p>
+      {{ end }}
+
+      {{ with .Params.medium }}
+      <p><strong>Medium:</strong> {{ . }}</p>
+      {{ end }}
     </div>
-    {{ with .Content }}<div class="artwork__notes">{{ . }}</div>{{ end }}
+
+    {{ with .Content }}
+    <div class="artwork__notes">{{ . }}</div>
+    {{ end }}
+
     <a href="{{ "/gallery/" | relURL }}">&larr; Back to Gallery</a>
   </div>
 </article>

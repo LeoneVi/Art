@@ -197,7 +197,14 @@ def yaml_list(values: Iterable[str], indent: str = "") -> list[str]:
     return lines
 
 
-def build_markdown(title: str, image_urls: list[str], orientation: str | None, date: str | None, medium: str | None, tags: list[str]) -> str:
+def build_markdown(
+        title: str,
+        image_urls: list[str],
+        orientation: str | None,
+        date: str | None,
+        medium: str | None,
+        tags: list[str],
+) -> str:
     orientation_value = orientation or "landscape"
 
     lines = [
@@ -210,11 +217,11 @@ def build_markdown(title: str, image_urls: list[str], orientation: str | None, d
     else:
         lines.append("image:")
         lines.extend(yaml_list(image_urls, indent="  "))
-        lines.append("images:")
-        lines.extend(yaml_list(image_urls, indent="  "))
 
     if medium:
-        lines.append(f'medium: "{medium.replace("\"", "\\\"")}"')
+        escaped_medium = medium.replace('"', '\\"')
+        lines.append(f'medium: "{escaped_medium}"')
+
     if tags:
         joined = ", ".join(f'"{t}"' for t in tags)
         lines.append(f"tags: [{joined}]")
