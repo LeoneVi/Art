@@ -233,9 +233,14 @@ def build_markdown(title: str, image_urls: list[str], orientation: str | None, d
     return "\n".join(lines)
 
 
-def write_post(output_path: Path, content: str) -> None:
+def write_post(output_path: Path, content: str) -> bool:
+    if output_path.exists():
+        print(f"[SKIP] Already exists: {output_path}")
+        return False
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(content, encoding="utf-8")
+    return True
 
 
 def process_single_image(path: Path) -> bool:
@@ -246,11 +251,12 @@ def process_single_image(path: Path) -> bool:
     orientation = get_orientation(path)
 
     output_path = OUTPUT_DIR / f"{slug}.md"
-    markdown = build_markdown(title, [image_url], orientation, date, medium, tags)
+    markdown = build_markdown(
+        title, [image_url], orientation, date, medium, tags
+    )
 
     print(f"[WRITE] {output_path}")
-    write_post(output_path, markdown)
-    return True
+    return write_post(output_path, markdown)
 
 
 def process_directory(path: Path) -> bool:
@@ -266,25 +272,31 @@ def process_directory(path: Path) -> bool:
     first_with_metadata = images[0]
     date = medium = None
     tags: list[str] = []
+
     for candidate in images:
         d, m, t = get_metadata(candidate)
+
         if d and not date:
             date = d
             first_with_metadata = candidate
+
         if m and not medium:
             medium = m
+
         if t and not tags:
             tags = t
+
         if date and medium and tags:
             break
 
     orientation = get_orientation(first_with_metadata)
     output_path = OUTPUT_DIR / f"{slug}.md"
-    markdown = build_markdown(title, image_urls, orientation, date, medium, tags)
+    markdown = build_markdown(
+        title, image_urls, orientation, date, medium, tags
+    )
 
     print(f"[WRITE] {output_path} ({len(image_urls)} images)")
-    write_post(output_path, markdown)
-    return True
+    return write_post(output_path, markdown)
 
 
 def main() -> None:
