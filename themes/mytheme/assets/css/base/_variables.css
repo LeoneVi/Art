@@ -6,7 +6,7 @@
 
 :root {
   /* Color — kept deliberately minimal so artwork stays the focal point */
-  --color-bg: #faf6ee;          /* near-white cream */
+  --color-bg: #fefefc;          /* near-white cream */
   --color-bg-alt: #f3ede1;      /* slightly deeper cream, for cards/hover */
   --color-text: #3b2a20;        /* dark chocolate brown */
   --color-text-muted: #7a6a5c;  /* softened brown for secondary text */
