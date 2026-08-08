@@ -1,8 +1,6 @@
 ---
 title: "Dogebux"
 image:
-  - "/img/gallery/dogebux/Blue1.png"
-  - "/img/gallery/dogebux/Blue2.png"
   - "/img/gallery/dogebux/Green1.png"
   - "/img/gallery/dogebux/Green2.png"
   - "/img/gallery/dogebux/Orange1.png"
@@ -11,5 +9,5 @@ image:
   - "/img/gallery/dogebux/Purple2.png"
 orientation: "landscape"
 featured: false
-date: 2023
+date: 2023-11-28
 ---
