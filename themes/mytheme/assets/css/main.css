@@ -15,7 +15,6 @@
 @import "components/_footer.css";
 
 /* gallery-layout only, see baseof.html's $cssFiles */
-@import "components/_filter-bar.css";
 @import "components/_gallery-featured.css";
 @import "components/_gallery-feed.css";
 @import "components/_artwork.css";
