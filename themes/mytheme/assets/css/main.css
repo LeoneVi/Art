@@ -18,3 +18,6 @@
 @import "components/_gallery-featured.css";
 @import "components/_gallery-feed.css";
 @import "components/_artwork.css";
+
+/* social icons */
+@import "components/_social-icons.css";

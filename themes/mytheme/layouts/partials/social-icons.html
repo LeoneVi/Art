@@ -1,19 +1,15 @@
 {{/*
-  Renders social links from data/social.yaml.
-  Usage: {{ partial "social-icons.html" (dict "class" "site-header__social") }}
+Renders social links from data/social.yaml.
+Usage: {{ partial "social-icons.html" (dict "class" "site-header__social") }}
 */}}
 <ul class="{{ .class | default "social-icons" }}">
-  {{ range hugo.Data.social }}
-  <li>
-    <a href="{{ .url }}" target="_blank" rel="me noopener" aria-label="{{ .name }}">
-      {{ if eq .icon "twitter" }}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.44 4.83c-.8.37-1.66.62-2.56.73a4.48 4.48 0 0 0 1.96-2.48 8.94 8.94 0 0 1-2.83 1.08 4.48 4.48 0 0 0-7.63 4.08A12.7 12.7 0 0 1 3.16 3.87a4.48 4.48 0 0 0 1.39 5.98c-.73-.02-1.42-.22-2.02-.56v.06a4.48 4.48 0 0 0 3.6 4.4 4.5 4.5 0 0 1-2.02.08 4.49 4.49 0 0 0 4.19 3.12A9 9 0 0 1 1.5 19.1a12.7 12.7 0 0 0 6.88 2.02c8.25 0 12.77-6.84 12.77-12.77 0-.19 0-.39-.01-.58a9.1 9.1 0 0 0 2.3-2.94z"/></svg>
-      {{ else if eq .icon "instagram" }}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg>
-      {{ else if eq .icon "tumblr" }}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.6 21.5c-1.14.6-2.36.9-3.66.9-3.2 0-4.94-1.9-4.94-5.1V9.9H4v-2.6c2.24-.7 3.3-2.6 3.45-4.9h2.7v4.5h3.3v3H10.2v6.4c0 1.35.65 1.85 1.7 1.85.6 0 1.2-.15 1.7-.4l1 3.75z"/></svg>
-      {{ end }}
-    </a>
-  </li>
-  {{ end }}
+{{ range hugo.Data.social }}
+<li>
+  <a href="{{ .url }}" target="_blank" rel="me noopener" aria-label="{{ .name }}">
+    {{ with readFile (printf "static/icon/social/%s.svg" .icon) }}
+    {{ . | safeHTML }}
+    {{ end }}
+  </a>
+</li>
+{{ end }}
 </ul>
