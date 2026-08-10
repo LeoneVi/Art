@@ -3,7 +3,7 @@
   Usage: {{ partial "social-icons.html" (dict "class" "site-header__social") }}
 */}}
 <ul class="{{ .class | default "social-icons" }}">
-  {{ range site.Data.social }}
+  {{ range hugo.Data.social }}
   <li>
     <a href="{{ .url }}" target="_blank" rel="me noopener" aria-label="{{ .name }}">
       {{ if eq .icon "twitter" }}
