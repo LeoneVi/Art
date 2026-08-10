@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.Locale | default "en" }}">
 <head>
+  <style>html{visibility:hidden;opacity:0}</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
@@ -22,6 +23,7 @@
     "css/components/_header.css"
     "css/components/_footer.css"
     "css/components/_home.css"
+    "css/base/_fouc.css"
   }}
   {{ if .IsHome }}
     {{ $cssFiles = $cssFiles | append "css/components/_gallery-feed.css" }}
@@ -40,7 +42,11 @@
   {{ end }}
 
   {{ $cssBundle := $styles | resources.Concat (printf "css/main-%s.css" (.Layout | default "default")) | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}" integrity="{{ $cssBundle.Data.Integrity }}">
+  <link
+          rel="stylesheet"
+          href="{{ $cssBundle.RelPermalink }}"
+          integrity="{{ $cssBundle.Data.Integrity }}"
+  >
 </head>
 <body>
   {{ partial "header.html" . }}
