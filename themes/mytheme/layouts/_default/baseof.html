@@ -39,8 +39,8 @@
     {{ $styles = $styles | append (resources.Get .) }}
   {{ end }}
 
-  {{ $cssBundle := $styles | resources.Concat (printf "css/main-%s.css" (.Layout | default "default")) | resources.Minify | resources.Fingerprint }}
-  <link
+  {{ $bundleName := cond $isGalleryView "gallery" "default" }}
+  {{ $cssBundle := $styles | resources.Concat (printf "css/main-%s.css" $bundleName) | resources.Minify | resources.Fingerprint }}  <link
           rel="stylesheet"
           href="{{ $cssBundle.RelPermalink }}"
           integrity="{{ $cssBundle.Data.Integrity }}"
