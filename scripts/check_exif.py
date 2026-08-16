@@ -24,7 +24,7 @@ print(f"Scanning for exif data in gallery...")
 print()
 
 if not ROOT.is_dir():
-    print("❌ Gallery directory does not exist.")
+    print("Gallery directory does not exist.")
     raise SystemExit(1)
 
 for path in sorted(ROOT.rglob("*")):
@@ -67,7 +67,7 @@ if images_with_exif:
         print(f"  - {path}")
 
     print()
-    print("❌ EXIF data detected.")
+    print("EXIF data detected.")
     raise SystemExit(1)
 
 print("✓ No EXIF data found.")
