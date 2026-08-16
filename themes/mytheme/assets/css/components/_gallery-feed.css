@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Gallery feed — every piece, image-only square tiles.
+   ========================================================================== */
+
+.gallery-feed {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+}
+
+.gallery-feed__heading {
+  margin-bottom: var(--spacing-lg);
+}
+
+.gallery-feed__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-xs);
+}
+
+.gallery-feed__item {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  border: 0;
+}
+
+.gallery-feed__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.gallery-feed__item:hover img {
+  transform: scale(1.02);
+}
+
+.gallery-feed__item--hidden {
+  display: none;
+}
+
+.gallery-feed__multi-badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  color: var(--color-white);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gallery-feed__multi-badge svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .gallery-feed__grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-feed__grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

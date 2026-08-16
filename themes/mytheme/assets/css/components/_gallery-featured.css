@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Featured gallery — larger image-only tiles.
+   ========================================================================== */
+
+.gallery-featured {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-md);
+}
+
+.gallery-featured__heading {
+  margin-bottom: var(--spacing-lg);
+}
+
+.gallery-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--gallery-gap);
+}
+
+.gallery-featured__item {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: var(--border-width) solid var(--color-border);
+}
+
+.gallery-featured__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 800px) {
+  .gallery-featured__grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

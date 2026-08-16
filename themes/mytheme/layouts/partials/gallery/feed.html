@@ -1,0 +1,67 @@
+{{/*
+Full feed — every piece in /content/gallery, newest first.
+data-medium / data-tags / data-title attributes are what
+gallery-filter.js reads to do client-side search + filtering.
+
+Gallery images are resized and converted to WebP by Hugo.
+The original PNG is only loaded on the individual artwork page.
+*/}}
+
+{{ $pieces := where site.RegularPages.ByDate.Reverse "Section" "gallery" }}
+
+<section class="gallery-feed" id="feed">
+  <div class="gallery-feed__heading">
+    <h2>Gallery</h2>
+  </div>
+
+  <div class="gallery-feed__grid" id="gallery-feed-grid">
+    {{ range $pieces }}
+
+    {{ $cover := .Params.image }}
+    {{ $isMulti := and (reflect.IsSlice .Params.image) (gt (len .Params.image) 1) }}
+
+    {{/* Normalize image to a single cover path */}}
+    {{ if reflect.IsSlice $cover }}
+    {{ if gt (len $cover) 0 }}
+    {{ $cover = index $cover 0 }}
+    {{ end }}
+    {{ end }}
+
+    {{/* Get the original image from Hugo's assets directory */}}
+    {{ $image := resources.Get $cover }}
+
+    <a
+            class="gallery-feed__item"
+            href="{{ .RelPermalink }}"
+            data-title="{{ .Title | lower }}"
+            data-medium="{{ .Params.medium | lower }}"
+            data-tags="{{ delimit (.Params.tags | default (slice)) "," | lower }}"
+    >
+
+    {{ if $image }}
+
+    {{/* Create a smaller WebP thumbnail for the gallery */}}
+    {{ $thumbnail := $image.Resize "500x webp q75" }}
+
+    <img
+            src="{{ $thumbnail.RelPermalink }}"
+            alt="{{ .Title }}"
+            loading="lazy"
+            decoding="async"
+            width="{{ $thumbnail.Width }}"
+            height="{{ $thumbnail.Height }}"
+    >
+
+    {{ end }}
+
+    {{ if $isMulti }}
+    {{ with readFile "static/icon/images-round.svg" }}
+    <span class="gallery-feed__multi-badge" aria-hidden="true">{{ . | safeHTML }}</span>
+    {{ end }}
+    {{ end }}
+
+    </a>
+
+    {{ end }}
+  </div>
+</section>

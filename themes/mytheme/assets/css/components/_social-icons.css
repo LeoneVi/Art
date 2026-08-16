@@ -1,0 +1,6 @@
+.site-header__social svg,
+.site-footer__social svg {
+    display: block;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+}

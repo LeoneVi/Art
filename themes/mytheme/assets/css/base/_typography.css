@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Typography — heading/body scale, all sizes pulled from _variables.css
+   ========================================================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: var(--line-height-tight);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-md);
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+
+p {
+  margin: 0 0 var(--spacing-md);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}

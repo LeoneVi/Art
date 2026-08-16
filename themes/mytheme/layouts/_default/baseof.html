@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ .Summary | default site.Params.description }}">
+
+  <link rel="icon" type="image/svg+xml" href="{{ "icon/framed-picture.svg" | absURL }}">   {{/* site icon */}}
+
+  {{/*
+    resources.Concat (not @import) does the actual bundling — Hugo Pipes
+    doesn't resolve CSS @import out of the box, so main.css's @import list
+    is just documentation of order; this is the real source of truth.
+    Cache key is scoped per-layout so gallery pages don't pull in CSS
+    that other layouts don't need.
+  */}}
+  {{ $isGalleryView := or (eq .Layout "gallery") (eq .Section "gallery") (eq .Section "featured") }}
+
+  {{ $cssFiles := slice
+    "css/base/_reset.css"
+    "css/base/_variables.css"
+    "css/base/_typography.css"
+    "css/components/_header.css"
+    "css/components/_footer.css"
+    "css/components/_home.css"
+    "css/components/_social-icons.css"
+  }}
+  {{ if .IsHome }}
+    {{ $cssFiles = $cssFiles | append "css/components/_gallery-feed.css" }}
+  {{ end }}
+  {{ if $isGalleryView }}
+    {{ $cssFiles = $cssFiles | append (slice
+      "css/components/_gallery-featured.css"
+      "css/components/_gallery-feed.css"
+      "css/components/_artwork.css"
+    ) }}
+  {{ end }}
+
+  {{ $styles := slice }}
+  {{ range $cssFiles }}
+    {{ $styles = $styles | append (resources.Get .) }}
+  {{ end }}
+
+  {{ $bundleName := cond $isGalleryView "gallery" "default" }}
+  {{ $cssBundle := $styles | resources.Concat (printf "css/main-%s.css" $bundleName) | resources.Minify | resources.Fingerprint }}  <link
+          rel="stylesheet"
+          href="{{ $cssBundle.RelPermalink }}"
+          integrity="{{ $cssBundle.Data.Integrity }}"
+  >
+</head>
+<body>
+  {{ partial "header.html" . }}
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{ if $isGalleryView }}
+    {{ $filterJS := resources.Get "js/gallery-filter.js" | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" defer></script>
+    {{ if and .IsPage (eq .Section "gallery") }}
+      {{ $carouselJS := resources.Get "js/artwork-carousel.js" | resources.Minify | resources.Fingerprint }}
+      <script src="{{ $carouselJS.RelPermalink }}" integrity="{{ $carouselJS.Data.Integrity }}" defer></script>
+    {{ end }}
+  {{ end }}
+</body>
+</html>

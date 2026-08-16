@@ -1,0 +1,11 @@
+baseURL = 'https://art.toryleone.com/'
+locale = 'en-us'
+title = 'Tory Leone'
+theme = 'mytheme'
+
+[taxonomies]
+  medium = 'mediums'
+  tag = 'tags'
+
+[params]
+  description = 'Original artwork by Tory Leone.'

@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Single artwork page — used by themes/mytheme/layouts/gallery/single.html
+   ========================================================================== */
+
+.artwork {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.artwork__viewer {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-bg-muted);
+}
+
+.artwork__slide {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.artwork__slide.is-active {
+  display: block;
+}
+
+.artwork__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: var(--color-overlay);
+  color: var(--color-bg);
+  cursor: pointer;
+}
+
+.artwork__arrow--prev {
+  left: var(--spacing-sm);
+}
+
+.artwork__arrow--next {
+  right: var(--spacing-sm);
+}
+
+.artwork__details h1 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.artwork__meta {
+  margin: var(--spacing-md) 0;
+}
+
+.artwork__meta p {
+  margin-bottom: var(--spacing-xs);
+}
+
+.artwork__notes {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+}
+
+.artwork__details > a {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 800px) {
+  .artwork {
+    grid-template-columns: 1fr;
+  }
+}
