@@ -1,6 +1,6 @@
 ---
 title: "Pencil Sketch of Young Woman With Bangs and Long Hair"
-image: "gallery/pencil-sketch-of-young-woman-with-bangs-and-long-hair.jpeg"
+image: "gallery/pencil-sketch-of-young-woman-with-bangs-and-long-hair.png"
 medium: "Pencil"
 orientation: "portrait"
 featured: false

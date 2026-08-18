@@ -1,6 +1,6 @@
 ---
 title: "Annunciation Among Hydrangeas"
-image: "gallery/annunciation-among-hydrangeas.jpg"
+image: "gallery/annunciation-among-hydrangeas.png"
 medium: "Watercolor"
 orientation: "landscape"
 featured: true

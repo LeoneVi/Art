@@ -1,12 +1,12 @@
 ---
 title: "Studies of Animals at Zoo in Pencil"
 image:
-  - "gallery/studies-of-animals-at-zoo-in-pencil/1.jpeg"
-  - "gallery/studies-of-animals-at-zoo-in-pencil/2.jpeg"
-  - "gallery/studies-of-animals-at-zoo-in-pencil/3.jpeg"
-  - "gallery/studies-of-animals-at-zoo-in-pencil/4.jpeg"
-  - "gallery/studies-of-animals-at-zoo-in-pencil/5.jpeg"
-  - "gallery/studies-of-animals-at-zoo-in-pencil/6.jpeg"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/1.png"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/2.png"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/3.png"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/4.png"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/5.png"
+  - "gallery/studies-of-animals-at-zoo-in-pencil/6.png"
 medium: "Pencil"
 orientation: "portrait"
 featured: false

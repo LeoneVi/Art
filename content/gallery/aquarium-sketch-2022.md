@@ -1,6 +1,6 @@
 ---
 title: "Aquarium Sketch 2022"
-image: "gallery/aquarium-sketch-2022.jpg"
+image: "gallery/aquarium-sketch-2022.png"
 orientation: "landscape"
 medium: "Ink"
 featured: false
