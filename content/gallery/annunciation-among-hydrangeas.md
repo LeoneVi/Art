@@ -7,4 +7,4 @@ featured: true
 date: 2026-08-09
 ---
 
-Inspired by Piermatteo d'Amelia's *The Annunciation* at the Isabella Stewart Gardner museum, I painted a watercolor of my own design of the annunciation. Given to my grandma for her 82nd birthday. Her father, Giuseppe, had always encouraged her to pray the Rosary.
+Inspired by Piermatteo d'Amelia's *The Annunciation* at the Isabella Stewart Gardner museum, I painted a watercolor of my own design of the annunciation. Given to my grandma for her 82nd birthday. Her father, Giuseppe, had always encouraged her and her siblings to pray the Rosary.
