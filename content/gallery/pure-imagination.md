@@ -7,3 +7,5 @@ orientation: "landscape"   # portrait | landscape | square — drives shape in f
 featured: false
 date: 2017-04-18
 ---
+
+Inspired by Maroon 5’s song “Pure Imagination,” I drew my own imagined world at the age of 13.

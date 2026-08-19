@@ -189,7 +189,7 @@ def get_metadata(path: Path) -> tuple[str | None, str | None, list[str]]:
 
 
 def to_image_url(path: Path) -> str:
-    return "/img/gallery/" + path.relative_to(INPUT_DIR).as_posix()
+    return "gallery/" + path.relative_to(INPUT_DIR).as_posix()
 
 
 def yaml_list(values: Iterable[str], indent: str = "") -> list[str]:

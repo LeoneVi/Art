@@ -12,3 +12,5 @@ orientation: "landscape"
 featured: false
 date: 2022-11-28
 ---
+
+A design for a made up currency, Dogebux.

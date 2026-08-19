@@ -9,3 +9,5 @@ orientation: "portrait"
 featured: false
 date: 2022-02-01
 ---
+
+Study of a Bargue plate.

@@ -12,3 +12,5 @@ orientation: "portrait"
 featured: false
 date: 2025-07-26
 ---
+
+Sketches of animals at the Roger Williams Park Zoo. Drawn while visiting with a friend.

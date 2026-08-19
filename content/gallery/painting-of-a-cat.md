@@ -8,3 +8,5 @@ orientation: "portrait"
 featured: false
 date: 2024-08-15
 ---
+
+A watercolor painting of a friend's cat, given to her as a birthday gift.

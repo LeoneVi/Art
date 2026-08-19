@@ -6,3 +6,5 @@ orientation: "portrait"
 featured: false
 date: 2022-04-07
 ---
+
+A long-term figure drawing made in the span of a few weeks.

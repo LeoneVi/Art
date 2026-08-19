@@ -6,3 +6,5 @@ orientation: "portrait"
 featured: false
 date: 2025-08-08
 ---
+
+Drawing with a BIC mechanical pencil in my sketchbook.

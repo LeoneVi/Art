@@ -6,3 +6,5 @@ orientation: "portrait"
 featured: false
 date: 2020-03-05
 ---
+
+Drawn from the back of my classroom, when I ought to have been paying attention to my trigonometry lesson.

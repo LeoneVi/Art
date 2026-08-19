@@ -8,3 +8,5 @@ orientation: "portrait"
 featured: false
 date: 2024-09-06
 ---
+
+A watercolor painting of a friend's dog, given to him as a birthday gift.

@@ -10,3 +10,5 @@ orientation: "portrait"
 featured: false
 date: 2022-08-26
 ---
+
+Moved by Bianca Devins’s story, I made these drawings from photographs of her.

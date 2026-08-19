@@ -8,3 +8,5 @@ orientation: "portrait"
 featured: false
 date: 2022-09-17
 ---
+
+Drawn on newsprint for an assignment centered around a theme of my choosing: “motherhood.”

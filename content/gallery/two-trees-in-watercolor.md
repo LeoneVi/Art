@@ -6,3 +6,5 @@ orientation: "portrait"
 featured: false
 date: 2021-09-06
 ---
+
+Drawn from life at a nearby park.
