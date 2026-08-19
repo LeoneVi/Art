@@ -2,7 +2,7 @@
 title: "Annunciation"
 image:
   - "gallery/annunciation/1.png"
-  - "/assets/gallery/annunciation/2.jpeg"
+  - "gallery/annunciation/2.jpeg"
 medium: "Watercolor"
 orientation: "portrait"
 featured: false
