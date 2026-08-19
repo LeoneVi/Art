@@ -1,6 +1,6 @@
 ---
 title: "Erika The Goober's DTIY Challenge"
-image: "gallery/erika-the-goober's-dtiy-challenge.png"
+image: "gallery/erika-the-goober-s-dtiy-challenge.png"
 medium: "Digital illustration"
 orientation: "portrait"
 featured: false
