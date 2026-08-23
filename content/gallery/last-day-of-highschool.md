@@ -4,6 +4,7 @@ image:
   - "gallery/last-day-of-highschool/1.png"
   - "gallery/last-day-of-highschool/2.png"
 orientation: "square"
+medium: "Pen"
 featured: false
 date: 2020-03-12
 ---

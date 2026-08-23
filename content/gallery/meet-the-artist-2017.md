@@ -2,7 +2,6 @@
 title: "Meet The Artist (2017)"
 image: "gallery/meet-the-artist-2017.png"
 medium: "Digital illustration"
-tags: ["digital"]
 orientation: "portrait"   # portrait | landscape | square — drives shape in featured grid
 featured: false
 date: 2017-04-16

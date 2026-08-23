@@ -6,6 +6,7 @@ image:
   - "gallery/sketches-of-coworkers-during-team-meetings/3.png"
   - "gallery/sketches-of-coworkers-during-team-meetings/4.png"
 orientation: "portrait"
+medium: "Pen"
 featured: false
 date: 2024-11-04
 ---
