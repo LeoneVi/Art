@@ -4,7 +4,7 @@ data-medium / data-tags / data-title attributes are what
 gallery-filter.js reads to do client-side search + filtering.
 
 Gallery images are resized and converted to WebP by Hugo.
-The original PNG is only loaded on the individual artwork page.
+The individual artwork page also displays WebP and only links to the original.
 */}}
 
 {{ $pieces := where site.RegularPages.ByDate.Reverse "Section" "gallery" }}

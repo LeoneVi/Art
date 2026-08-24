@@ -21,6 +21,10 @@
 
 .artwork__slide {
   display: none;
+}
+
+.artwork__slide img {
+  display: block;
   width: 100%;
   height: auto;
 }

@@ -12,15 +12,27 @@
     {{ $image := resources.Get $src }}
 
     {{ if $image }}
-    <img
+    {{ $displayImage := $image.Fit "2000x2000 webp q85" }}
+    <a
             class="artwork__slide{{ if eq $i 0 }} is-active{{ end }}"
-            src="{{ $image.RelPermalink }}"
-            alt="{{ $.Title }}"
-            loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
-            decoding="async"
-            width="{{ $image.Width }}"
-            height="{{ $image.Height }}"
+            href="{{ $image.RelPermalink }}"
+            aria-label="Open the full-size image for {{ $.Title }}"
     >
+      <img
+              {{ if eq $i 0 }}
+              src="{{ $displayImage.RelPermalink }}"
+              fetchpriority="high"
+              {{ else }}
+              data-src="{{ $displayImage.RelPermalink }}"
+              fetchpriority="low"
+              {{ end }}
+              alt="{{ $.Title }}"
+              loading="eager"
+              decoding="async"
+              width="{{ $displayImage.Width }}"
+              height="{{ $displayImage.Height }}"
+      >
+    </a>
     {{ end }}
     {{ end }}
 
