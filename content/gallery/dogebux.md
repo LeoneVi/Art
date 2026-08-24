@@ -1,7 +1,6 @@
 ---
 title: "Dogebux"
 image:
-  - "gallery/dogebux/1.png"
   - "gallery/dogebux/Green1.png"
   - "gallery/dogebux/Green2.png"
   - "gallery/dogebux/Orange1.png"

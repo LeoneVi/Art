@@ -270,19 +270,20 @@ def process_single_image(path: Path) -> bool:
 
 def process_directory(path: Path) -> bool:
     images = sorted(p for p in path.rglob("*") if is_image(p))
-    if not images:
-        print(f"[SKIP] No images found in directory: {path}")
+    artwork_images = [p for p in images if p.stem.lower() != "_cover"]
+    if not artwork_images:
+        print(f"[SKIP] No non-cover images found in directory: {path}")
         return False
 
     slug = slugify(path.name)
     title = titleize(path.name)
-    image_urls = [to_image_url(p) for p in images]
+    image_urls = [to_image_url(p) for p in artwork_images]
 
-    first_with_metadata = images[0]
+    first_with_metadata = artwork_images[0]
     date = medium = None
     tags: list[str] = []
 
-    for candidate in images:
+    for candidate in artwork_images:
         d, m, t = get_metadata(candidate)
 
         if d and not date:

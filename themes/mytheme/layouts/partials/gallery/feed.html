@@ -27,8 +27,14 @@ The individual artwork page also displays WebP and only links to the original.
     {{ end }}
     {{ end }}
 
-    {{/* Get the original image from Hugo's assets directory */}}
+    {{/* Use a reserved _cover image when this gallery has one. */}}
     {{ $image := resources.Get $cover }}
+    {{ $coverDir := path.Dir $cover }}
+    {{ if ne $coverDir "gallery" }}
+    {{ with resources.Match (printf "%s/_cover.*" $coverDir) }}
+    {{ $image = index . 0 }}
+    {{ end }}
+    {{ end }}
 
     <a
             class="gallery-feed__item"

@@ -1,17 +1,26 @@
 {{ define "main" }}
-{{ $images := .Params.image }}
+{{ $imagePaths := .Params.image }}
 
-{{ if not (reflect.IsSlice $images) }}
-{{ $images = slice $images }}
+{{ if not (reflect.IsSlice $imagePaths) }}
+{{ $imagePaths = slice $imagePaths }}
+{{ end }}
+
+{{/* Exclude reserved cover files and missing resources from the carousel. */}}
+{{ $images := slice }}
+  {{ range $src := $imagePaths }}
+    {{ $filename := path.Base $src }}
+    {{ $stem := strings.TrimSuffix $filename (path.Ext $filename) }}
+    {{ if ne (lower $stem) "_cover" }}
+      {{ with resources.Get $src }}
+      {{ $images = $images | append . }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
 <article class="artwork">
   <div class="artwork__viewer" data-gallery>
 
-    {{ range $i, $src := $images }}
-    {{ $image := resources.Get $src }}
-
-    {{ if $image }}
+    {{ range $i, $image := $images }}
     {{ $displayImage := $image.Fit "2000x2000 webp q85" }}
     <a
             class="artwork__slide{{ if eq $i 0 }} is-active{{ end }}"
@@ -33,7 +42,6 @@
               height="{{ $displayImage.Height }}"
       >
     </a>
-    {{ end }}
     {{ end }}
 
     {{ if gt (len $images) 1 }}

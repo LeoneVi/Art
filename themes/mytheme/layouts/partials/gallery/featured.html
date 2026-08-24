@@ -20,8 +20,14 @@
     {{ end }}
     {{ end }}
 
-    {{/* Get original image from Hugo's assets */}}
+    {{/* Use a reserved _cover image when this gallery has one. */}}
     {{ $image := resources.Get $cover }}
+    {{ $coverDir := path.Dir $cover }}
+    {{ if ne $coverDir "gallery" }}
+    {{ with resources.Match (printf "%s/_cover.*" $coverDir) }}
+    {{ $image = index . 0 }}
+    {{ end }}
+    {{ end }}
 
     <a
             class="gallery-featured__item"
