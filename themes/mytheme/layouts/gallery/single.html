@@ -1,3 +1,91 @@
+{{ define "styles" }}
+<style>
+  .artwork {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--spacing-xl);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  }
+
+  .artwork__viewer {
+    position: relative;
+    overflow: hidden;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-muted);
+  }
+
+  .artwork__slide {
+    display: none;
+  }
+
+  .artwork__slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .artwork__slide.is-active {
+    display: block;
+  }
+
+  .artwork__arrow {
+    position: absolute;
+    top: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    border-radius: 999px;
+    color: var(--color-bg);
+    background: var(--color-overlay);
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .artwork__arrow--prev {
+    left: var(--spacing-sm);
+  }
+
+  .artwork__arrow--next {
+    right: var(--spacing-sm);
+  }
+
+  .artwork__details h1 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .artwork__meta {
+    margin: var(--spacing-md) 0;
+  }
+
+  .artwork__meta p {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .artwork__notes {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-body);
+  }
+
+  .artwork__details > a {
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 800px) {
+    .artwork {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{{ end }}
+
 {{ define "main" }}
 {{ $imagePaths := .Params.image }}
 

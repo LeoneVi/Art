@@ -2,12 +2,13 @@
 Renders social links from data/social.yaml.
 Usage: {{ partial "social-icons.html" (dict "class" "site-header__social") }}
 */}}
+
 <ul class="{{ .class | default "social-icons" }}">
 {{ range hugo.Data.social }}
 <li>
   <a href="{{ .url }}" target="_blank" rel="me noopener" aria-label="{{ .name }}">
     {{ with readFile (printf "static/icon/social/%s.svg" .icon) }}
-    {{ . | safeHTML }}
+    {{ replaceRE `(?s)^.*?<svg` "<svg" . | safeHTML }}
     {{ end }}
   </a>
 </li>

@@ -14,10 +14,5 @@
 @import "components/_header.css";
 @import "components/_footer.css";
 
-/* gallery-layout only, see baseof.html's $cssFiles */
-@import "components/_gallery-featured.css";
-@import "components/_gallery-feed.css";
-@import "components/_artwork.css";
-
 /* social icons */
 @import "components/_social-icons.css";

@@ -62,7 +62,7 @@ The individual artwork page also displays WebP and only links to the original.
 
     {{ if $isMulti }}
     {{ with readFile "static/icon/images-round.svg" }}
-    <span class="gallery-feed__multi-badge" aria-hidden="true">{{ . | safeHTML }}</span>
+    <span class="gallery-feed__multi-badge" aria-hidden="true">{{ replaceRE `(?s)^.*?<svg` "<svg" . | safeHTML }}</span>
     {{ end }}
     {{ end }}
 
