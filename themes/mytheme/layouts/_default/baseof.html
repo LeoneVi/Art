@@ -23,7 +23,6 @@
     href="{{ "icon/framed-picture.svg" | absURL }}"
   >
 
-  {{ $isGalleryView := or (eq .Section "gallery") (eq .Section "featured") }}
   {{ $cssFiles := slice
     "css/base/_reset.css"
     "css/base/_variables.css"
@@ -55,16 +54,6 @@
 </main>
 
 {{ partial "footer.html" . }}
-
-{{ if $isGalleryView }}
-  {{ $filterJS := resources.Get "js/gallery-filter.js" | resources.Minify | resources.Fingerprint }}
-  <script src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" defer></script>
-
-  {{ if and .IsPage (eq .Section "gallery") }}
-    {{ $carouselJS := resources.Get "js/artwork-carousel.js" | resources.Minify | resources.Fingerprint }}
-    <script src="{{ $carouselJS.RelPermalink }}" integrity="{{ $carouselJS.Data.Integrity }}" defer></script>
-  {{ end }}
-{{ end }}
 
 {{ block "scripts" . }}{{ end }}
 </body>

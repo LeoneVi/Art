@@ -1,0 +1,35 @@
+categories:
+  - id: "catholic-mystery"
+    title: "Catholic Mystery"
+    description: "A color illustration centered on a Catholic mystery or devotional subject."
+    options:
+      - medium: "Color"
+        starting_price: 129
+
+  - id: "catholic-icon"
+    title: "Catholic Icon"
+    description: "A devotional portrait created in color or pencil."
+    options:
+      - medium: "Color"
+        starting_price: 100
+      - medium: "Pencil"
+        starting_price: 50
+
+  - id: "pet-portrait"
+    title: "Pet Portrait"
+    description: "A portrait based on clear reference photographs of your pet."
+    options:
+      - medium: "Color"
+        starting_price: 79
+      - medium: "Pencil"
+        starting_price: 39
+
+  - id: "people-portrait"
+    title: "People Portrait"
+    description: "Portrait pricing depends on the medium, size, background, and number of people."
+    options:
+      - medium: "Color"
+        starting_price: 79
+      - medium: "Pencil"
+        starting_price: 39
+price_note: "Displayed prices are starting prices."

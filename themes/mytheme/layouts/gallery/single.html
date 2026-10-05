@@ -17,18 +17,10 @@
     background: var(--color-bg-muted);
   }
 
-  .artwork__slide {
-    display: none;
-  }
-
   .artwork__slide img {
     display: block;
     width: 100%;
     height: auto;
-  }
-
-  .artwork__slide.is-active {
-    display: block;
   }
 
   .artwork__arrow {
@@ -170,4 +162,9 @@
     <a href="{{ "/gallery/" | relURL }}">&larr; Back to Gallery</a>
   </div>
 </article>
+{{ end }}
+
+{{ define "scripts" }}
+  {{ $carouselJS := resources.Get "js/artwork-carousel.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $carouselJS.RelPermalink }}" integrity="{{ $carouselJS.Data.Integrity }}" defer></script>
 {{ end }}

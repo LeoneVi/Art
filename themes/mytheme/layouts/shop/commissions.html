@@ -1,0 +1,195 @@
+{{ define "styles" }}
+<style>
+  .shop-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  }
+
+  .shop-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .shop-subnav a {
+    color: var(--color-text-muted);
+  }
+
+  .shop-subnav a[aria-current="page"] {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .commission-header {
+    max-width: 52rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .commission-status strong {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .commission-status p {
+    margin: 0;
+  }
+
+  .commission-content {
+    max-width: 52rem;
+  }
+
+  .commission-content h2 {
+    margin-top: var(--spacing-xl);
+  }
+
+  .commission-content ol {
+    margin: 0 0 var(--spacing-xl) 1.25rem;
+    padding: 0;
+  }
+
+  .commission-content li {
+    margin-bottom: var(--spacing-sm);
+    padding-left: var(--spacing-xs);
+  }
+
+  .commission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  .commission-card {
+    padding: var(--spacing-lg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .commission-card h2 {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+  }
+
+  .commission-card > p {
+    color: var(--color-text-muted);
+  }
+
+  .commission-options {
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  .commission-option {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    border-bottom: var(--border-width) solid var(--color-border);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .commission-option strong {
+    white-space: nowrap;
+  }
+
+  .commission-quote {
+    margin: var(--spacing-md) 0 0;
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .commission-footnote {
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .commission-cta {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--color-bg-alt);
+    text-align: center;
+  }
+
+  .commission-cta a:first-of-type {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: var(--border-width) solid var(--color-accent);
+    color: var(--color-bg);
+    background: var(--color-accent);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .commission-cta a:first-of-type:hover,
+  .commission-cta a:first-of-type:focus {
+    text-decoration: none;
+    filter: brightness(0.92);
+  }
+
+  .commission-cta p:last-child {
+    margin: var(--spacing-md) 0 0;
+  }
+
+  @media (max-width: 700px) {
+    .commission-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $commissions := hugo.Data.commissions }}
+<section class="shop-page" aria-labelledby="commissions-title">
+  {{ partial "shop/nav.html" . }}
+
+  <header class="commission-header">
+    <p class="eyebrow">Custom artwork</p>
+    <h1 id="commissions-title">{{ .Title }}</h1>
+
+    <div class="commission-content">
+      {{ .Content }}
+    </div>
+  </header>
+
+  <div class="commission-grid">
+    {{ range $category := $commissions.categories }}
+      <article class="commission-card" id="{{ $category.id }}">
+        <h2>{{ $category.title }}</h2>
+        <p>{{ $category.description }}</p>
+
+        {{ with $category.options }}
+          <div class="commission-options">
+            {{ range . }}
+              <div class="commission-option">
+                <span>{{ .medium }}</span>
+                <strong>From ${{ .starting_price }}</strong>
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{ if $category.custom_quote }}
+          <p class="commission-quote"><strong>Custom quote</strong></p>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+
+  <p class="commission-footnote">{{ $commissions.price_note }}</p>
+
+  <aside class="commission-cta">
+    <h2>Tell me about your idea</h2>
+    <p>Include the subject, medium, size, deadline, intended use, and links to clear reference images.</p>
+    <p>Before paying, please read the <a href="{{ "/shop/policies/" | relURL }}">commission policies</a>.</p>
+  </aside>
+</section>
+{{ end }}

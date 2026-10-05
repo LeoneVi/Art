@@ -1,0 +1,7 @@
+{{ $current := .RelPermalink }}
+<nav class="shop-subnav" aria-label="Shop navigation">
+  <a href="{{ "/shop/" | relURL }}"{{ if eq $current ("/shop/" | relURL) }} aria-current="page"{{ end }}>Overview</a>
+  <a href="{{ "/shop/prints/" | relURL }}"{{ if eq $current ("/shop/prints/" | relURL) }} aria-current="page"{{ end }}>Prints</a>
+  <a href="{{ "/shop/commissions/" | relURL }}"{{ if eq $current ("/shop/commissions/" | relURL) }} aria-current="page"{{ end }}>Commissions</a>
+  <a href="{{ "/shop/policies/" | relURL }}"{{ if eq $current ("/shop/policies/" | relURL) }} aria-current="page"{{ end }}>Policies</a>
+</nav>

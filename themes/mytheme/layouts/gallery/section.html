@@ -75,3 +75,8 @@
 {{ define "main" }}
   {{ partial "gallery/feed.html" . }}
 {{ end }}
+
+{{ define "scripts" }}
+  {{ $filterJS := resources.Get "js/gallery-filter.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" defer></script>
+{{ end }}

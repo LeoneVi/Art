@@ -1,5 +1,162 @@
+{{ define "styles" }}
+<style>
+  .shop-landing {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  }
+
+  .shop-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .shop-subnav a {
+    color: var(--color-text-muted);
+  }
+
+  .shop-subnav a[aria-current="page"] {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .shop-hero {
+    max-width: 46rem;
+    margin: 0 auto var(--spacing-xl);
+    text-align: center;
+  }
+
+  .shop-hero p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .shop-choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .shop-choice {
+    display: flex;
+    min-height: 22rem;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-end;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    background: var(--color-text);
+  }
+
+  .shop-choice:hover,
+  .shop-choice:focus {
+    text-decoration: none;
+  }
+
+  .shop-choice img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.68;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .shop-choice:hover img {
+    opacity: 0.78;
+    transform: scale(1.02);
+  }
+
+  .shop-choice__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+  }
+
+  .shop-choice h2 {
+    margin-bottom: var(--spacing-xs);
+    color: inherit;
+  }
+
+  .shop-choice p {
+    max-width: 32rem;
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .shop-note {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    border: var(--border-width) solid var(--color-border);
+    background: var(--color-bg-alt);
+    text-align: center;
+  }
+
+  .shop-note p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 700px) {
+    .shop-choices {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-choice {
+      min-height: 18rem;
+    }
+  }
+</style>
+{{ end }}
+
 {{ define "main" }}
+<section class="shop-landing" aria-labelledby="shop-title">
+  {{ partial "shop/nav.html" . }}
 
+  <header class="shop-hero">
+    <p class="eyebrow">Original art and reproductions</p>
+    <h1 id="shop-title">{{ .Title }}</h1>
     {{ .Content }}
+  </header>
 
+  <div class="shop-choices">
+    {{ $printImage := resources.Get "gallery/annunciation-among-hydrangeas.png" }}
+    <a class="shop-choice" href="{{ "/shop/prints/" | relURL }}">
+      {{ with $printImage }}
+        {{ $preview := .Fill "1000x700 Center webp q82" }}
+        <img src="{{ $preview.RelPermalink }}" alt="" width="{{ $preview.Width }}" height="{{ $preview.Height }}">
+      {{ end }}
+      <div class="shop-choice__content">
+        <h2>Art Prints</h2>
+        <p>Browse selected pieces prepared as professional reproductions.</p>
+      </div>
+    </a>
+
+    {{ $commissionImage := resources.Get "gallery/painting-of-a-dog/1.png" }}
+    <a class="shop-choice" href="{{ "/shop/commissions/" | relURL }}">
+      {{ with $commissionImage }}
+        {{ $preview := .Fill "1000x700 Center webp q82" }}
+        <img src="{{ $preview.RelPermalink }}" alt="" width="{{ $preview.Width }}" height="{{ $preview.Height }}">
+      {{ end }}
+      <div class="shop-choice__content">
+        <h2>Commissions</h2>
+        <p>Request Catholic artwork or a custom portrait of a person or pet.</p>
+      </div>
+    </a>
+  </div>
+
+  <aside class="shop-note">
+    <p><strong>Questions before ordering?</strong></p>
+    <p>Review the <a href="{{ "/shop/policies/" | relURL }}">shop policies</a> or send a commission inquiry before making a payment.</p>
+  </aside>
+</section>
 {{ end }}

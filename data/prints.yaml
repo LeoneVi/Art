@@ -1,0 +1,13 @@
+status: "coming-soon"
+label: "Print checkout is coming soon"
+note: "These are preview selections. Purchase buttons will appear after print sizes, paper, samples, and fulfillment are finalized."
+
+products:
+  - id: "annunciation-among-hydrangeas"
+    title: "Annunciation Among Hydrangeas"
+    image: "gallery/annunciation-among-hydrangeas.png"
+    artwork_url: "/gallery/annunciation-among-hydrangeas/"
+    medium: "Watercolor"
+    price_label: ""
+    shop_url: ""
+

@@ -1,0 +1,189 @@
+{{ define "styles" }}
+<style>
+  .shop-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  }
+
+  .shop-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .shop-subnav a {
+    color: var(--color-text-muted);
+  }
+
+  .shop-subnav a[aria-current="page"] {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .shop-page__header {
+    max-width: 48rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .shop-page__status {
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .print-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .print-card {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+  }
+
+  .print-card__image {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--color-bg-alt);
+  }
+
+  .print-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+
+  .print-card__image:hover img {
+    transform: scale(1.02);
+  }
+
+  .print-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: var(--spacing-md);
+  }
+
+  .print-card h2 {
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+  }
+
+  .print-card__medium,
+  .print-card__price {
+    color: var(--color-text-muted);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .print-card__action {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .print-card__action--disabled {
+    color: var(--color-text-muted);
+  }
+
+  .print-note {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-alt);
+  }
+
+  .print-note p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 850px) {
+    .print-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .print-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $catalog := hugo.Data.prints }}
+<section class="shop-page" aria-labelledby="prints-title">
+  {{ partial "shop/nav.html" . }}
+
+  <header class="shop-page__header">
+    <span class="shop-page__status">{{ $catalog.label }}</span>
+    <h1 id="prints-title">{{ .Title }}</h1>
+    {{ .Content }}
+  </header>
+
+  <div class="print-grid">
+    {{ range $product := $catalog.products }}
+      {{ $image := resources.Get $product.image }}
+      <article class="print-card">
+        <a class="print-card__image" href="{{ $product.artwork_url | relURL }}" aria-label="View {{ $product.title }} in the gallery">
+          {{ with $image }}
+            {{ $thumbnail := .Fill "800x800 Center webp q82" }}
+            <img
+              src="{{ $thumbnail.RelPermalink }}"
+              alt="{{ $product.title }}"
+              loading="lazy"
+              decoding="async"
+              width="{{ $thumbnail.Width }}"
+              height="{{ $thumbnail.Height }}"
+            >
+          {{ end }}
+        </a>
+
+        <div class="print-card__body">
+          <h2>{{ $product.title }}</h2>
+          <p class="print-card__medium">{{ $product.medium }}</p>
+          {{ with $product.price_label }}
+            <p class="print-card__price">{{ . }}</p>
+          {{ end }}
+
+          {{ with $product.shop_url }}
+            <a class="print-card__action" href="{{ . }}" target="_blank" rel="noopener">Buy print</a>
+          {{ else }}
+            <span class="print-card__action print-card__action--disabled">Coming soon</span>
+          {{ end }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+
+  <aside class="print-note">
+    <p><strong>{{ $catalog.label }}.</strong> {{ $catalog.note }}</p>
+    <p>You can still <a href="{{ "/gallery/" | relURL }}">browse the full gallery</a> or <a href="{{ "/shop/commissions/" | relURL }}">request a custom piece</a>.</p>
+  </aside>
+</section>
+{{ end }}

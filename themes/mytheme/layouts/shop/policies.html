@@ -1,0 +1,58 @@
+{{ define "styles" }}
+<style>
+  .shop-policies {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+  }
+
+  .shop-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-sm);
+  }
+
+  .shop-subnav a {
+    color: var(--color-text-muted);
+  }
+
+  .shop-subnav a[aria-current="page"] {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .shop-policies__intro {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .shop-policies__content h2 {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  .shop-policies__content h2:first-child {
+    margin-top: 0;
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<article class="shop-policies" aria-labelledby="policies-title">
+  {{ partial "shop/nav.html" . }}
+
+  <header class="shop-policies__intro">
+    <p class="eyebrow">Before ordering</p>
+    <h1 id="policies-title">{{ .Title }}</h1>
+    <p>These general policies explain what to expect.</p>
+  </header>
+
+  <div class="shop-policies__content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
